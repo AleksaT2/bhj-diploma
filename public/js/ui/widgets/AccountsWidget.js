@@ -14,7 +14,12 @@ class AccountsWidget {
    * необходимо выкинуть ошибку.
    * */
   constructor( element ) {
-
+    if (!element) {
+      throw new Error("Element doesn't exist");
+    }
+    this.element = element;
+    this.registerEvents();
+    this.update();
   }
 
   /**
@@ -25,7 +30,20 @@ class AccountsWidget {
    * вызывает AccountsWidget.onSelectAccount()
    * */
   registerEvents() {
+    const createAccountBtn = document.querySelector('.create-account');
+    const accountsList = document.getElementsByClassName('account');
 
+    createAccountBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      App.getModal('new-income').open('new-account');
+    })
+
+    for (let account of accountsList) {
+      account.addEventListener('click', (e) => {
+        e.preventDefault();
+        this.onSelectAccount();
+      })
+    }
   }
 
   /**

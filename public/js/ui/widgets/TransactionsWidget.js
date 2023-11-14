@@ -29,11 +29,11 @@ class TransactionsWidget {
     const expenceBtn = document.querySelector('.create-expense-button');
 
     incomeBtn.addEventListener('click', (e) => {
-      App.getModal('new-income').open();
+      App.getModal('newIncome').open();
     })
 
     expenceBtn.addEventListener('click', (e) => {
-      App.getModal('new-expense').open();
+      App.getModal('newExpense').open();
     })
   }
 }
